@@ -268,7 +268,7 @@ def main():
     efeitos = get_efeitos(labels, combinacoes, y_media, fatores)
 
     header = get_header(labels, replicas, 2, True)
-    enum = "\nTABELA DE SINAIS E VALORES MEDUDIS: \n"
+    enum = "\nTABELA DE SINAIS E VALORES MEDUDOS E ESTIMADOS: \n"
     comb_s = get_table_body(fatores, replicas, combinacoes, y_medidos, y_media)
     print(enum + header + "\n" + comb_s)
 
