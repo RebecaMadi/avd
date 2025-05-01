@@ -259,6 +259,7 @@ def main():
     if(fatores <2 or fatores>5 or replicas <1 or replicas>3):
         print("A entrada informada não é válida!")
     
+    log =  ""
     labels, combinacoes = get_combinacoes(fatores, replicas)   
 
     y_medidos = ler_medidas(fatores)
@@ -267,24 +268,35 @@ def main():
     efeitos = get_efeitos(labels, combinacoes, y_media, fatores)
 
     header = get_header(labels, replicas, 2, True)
-    print("\nTABELA DE SINAIS E VALORES MEDUDIS: ")
-    
-    print(header)
+    enum = "\nTABELA DE SINAIS E VALORES MEDUDIS: \n"
     comb_s = get_table_body(fatores, replicas, combinacoes, y_medidos, y_media)
-    print(comb_s)
+    print(enum + header + "\n" + comb_s)
+
+    log += enum + header + "\n" + comb_s
 
     ef_s = get_efeitos_string(labels, efeitos)
-    print("\nVALORES DOS EFEITOS: \n" + ef_s)
+    enum = "\nVALORES DOS EFEITOS: \n"
+    print(enum + ef_s)
+
+    log += enum + ef_s
 
     erros = get_erros(y_media, y_medidos, fatores)
     err_s = get_erros_string(erros, replicas, fatores)
-    print("\nERROS EXPERIMENTAIS: ")
-    print(err_s)
+    enum = "\nERROS EXPERIMENTAIS: \n"
+    print(enum + err_s)
 
-    print("\nPORÇÃO DE VARIAÇÃO: ")
+    log += enum + err_s
+
     ss = get_ss(efeitos, erros, fatores, replicas)
     ss_s = get_ss_string(ss, labels)
-    print(ss_s)
+    enum = "\nPORÇÃO DE VARIAÇÃO:\n"
+    print(enum + ss_s)
+
+    log += enum + ss_s
+
+    print("Informações salvas em log.txt!\n")
+    with open("log.txt", "w", encoding="utf-8") as arquivo:
+        arquivo.write(log)
 
 
 if __name__ == "__main__":
