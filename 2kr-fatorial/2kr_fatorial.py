@@ -151,7 +151,7 @@ def get_efeitos(labels, combinacoes, y, fatores):
         aux = 0
         for i in range(0, exp, 1):
             aux += combinacoes[label][i]*y[i]
-        efeitos.append(round(aux/4, 2))
+        efeitos.append(round(aux/exp, 2))
     
     return efeitos
 
